@@ -26,7 +26,7 @@ and open the template in the editor.
             <p></p>
             <div>
                 <table class="table">
-                    <caption>Contatos</caption>
+<!--                    <caption>Contatos</caption>-->
                     <thead>
                         <tr>
                             <th>Nome</th>
