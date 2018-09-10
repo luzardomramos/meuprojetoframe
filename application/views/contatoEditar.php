@@ -29,7 +29,7 @@
         <input name="email" type="email" value="<?php echo $contatoEditar[0]->email; ?>" required/>
         </div>
         <p></p>
-        <input class="btn" type="submit" value="Salvar"/>
+        <input class="btn btn-success" type="submit" value="Salvar"/>
         <?php form_close(); ?>
         <p></p>
         <a href="<?php echo base_url() . 'contato'; ?>">Cancelar</a>
