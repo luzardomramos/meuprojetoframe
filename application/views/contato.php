@@ -36,7 +36,7 @@ and open the template in the editor.
                     </thead>
                     <tbody>
                         <?php if ($contatos == false): ?>
-                            <tr><td>Nenhum contato encontrado</td></tr>
+                            <tr><td>Nenhum Adicionado</td></tr>
                         <?php else: ?>
                             <?php foreach ($contatos as $row): ?>
                                 <tr>
