@@ -33,7 +33,7 @@ class Contato extends CI_Controller {
 
     public function editar($id) {
     $this->load->view('template/header');
-//    $data['acronico'] = "MPF";    
+    $data['acronico'] = "MPF";    
     $data['completo'] = "Meu Projeto Frame";    
     $data['contatoEditar'] = $this->contatos->editar($id);
     $this->load->view('contatoEditar', $data);   
