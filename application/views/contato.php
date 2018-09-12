@@ -65,3 +65,8 @@ and open the template in the editor.
         <div class="col-xs-1 col-sm-1 col-lg-3"></div>
     </div>
 </div>
+<script  type="text/javascript">
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
