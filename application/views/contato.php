@@ -21,7 +21,7 @@ and open the template in the editor.
                 <input class="form-control " id="email" name="email" type="email" required/>
             </div>
             <input class="btn btn-success" type="submit" value="Salvar"/>
-            <input class="btn btn-danger" type="reset" value="Limpar"/>
+            <input class="btn btn-primary" type="reset" value="Limpar"/>
             <?php form_close(); ?>
             <p></p>
             <div>
@@ -47,7 +47,7 @@ and open the template in the editor.
                                         echo base_url() .
                                         'contato/editar/' . $row->id;
                                         ?>">Editar</a>
-                                        |
+                                        ||
                                         <a href="<?php
                                         echo base_url() .
                                         'contato/excluir/' . $row->id;
