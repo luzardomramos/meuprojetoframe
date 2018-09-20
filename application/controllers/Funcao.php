@@ -2,11 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Contato extends CI_Controller {
+class Funcao extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('Contatos_model', 'contatos');
         $this->load->model('Funcao_model', 'funcao');
         //contatos Ã© um alias para o Contatos_model 
     }
@@ -15,40 +14,37 @@ class Contato extends CI_Controller {
         $this->load->view('template/header');
         $dados['acronico'] = "PF";
         $dados['completo'] = "Projeto Frame";
-        $dados['contatos'] = $this->contatos->listar();
         $dados['funcao'] = $this->funcao->listar();
-        $this->load->view('contato', $dados);
+        $this->load->view('funcao', $dados);
         $this->load->view('template/footer');
     }
 
     public function inserir() {
-        $dados['nome'] = $this->input->post('nome');
-        $dados['email'] = $this->input->post('email');
-        $dados['funcao'] = $this->input->post('idfuncao');
-        $this->contatos->inserir($dados);
-        redirect('contato');
+        $dados['nomefuncao'] = $this->input->post('nomefuncao');
+        $this->funcao->inserir($dados);
+        redirect('funcao');
     }
 
     public function excluir($id) {
-        $this->contatos->deletar($id);
-        redirect('contato');
+        $this->funcao->deletar($id);
+        redirect('funcao');
     }
 
     public function editar($id) {
     $this->load->view('template/header');
     $data['acronico'] = "MPF";    
     $data['completo'] = "Meu Projeto Frame";    
-    $data['contatoEditar'] = $this->contatos->editar($id);
-    $this->load->view('contatoEditar', $data);   
+    $data['funcaoEditar'] = $this->funcao->editar($id);
+    $this->load->view('funcaoEditar', $data);   
     $this->load->view('template/footer');
     }
 
     public function atualizar() {
-        $data['id'] = $this->input->post('id');
-        $data['nome'] = $this->input->post('nome');
-        $data['email'] = $this->input->post('email');
-        $this->contatos->atualizar($data);
-        redirect('contato');
+        $data['idfuncao'] = $this->input->post('idfuncao');
+        $data['nomefuncao'] = $this->input->post('nomefuncao');
+//        $data['email'] = $this->input->post('email');
+        $this->funcao->atualizar($data);
+        redirect('funcao');
     }
 }
 
