@@ -6,6 +6,11 @@ class Funcao extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        if (!$this->session->userdata('estou_logado')) {
+            redirect('login');
+        } elseif ($this->session->userdata('logado')->perfilAcesso == "USER") {
+            redirect('home');
+        }
         $this->load->model('Funcao_model', 'funcao');
         //contatos Ã© um alias para o Contatos_model 
     }
@@ -21,31 +26,53 @@ class Funcao extends CI_Controller {
 
     public function inserir() {
         $dados['nomefuncao'] = $this->input->post('nomefuncao');
-        $this->funcao->inserir($dados);
-        redirect('funcao');
+        $result = $this->funcao->inserir($dados);
+
+        if ($result == true) {
+            $this->session->set_flashdata('sucesso', 'msg');
+            redirect('funcao');
+        } else {
+            $this->session->set_flashdata('falha', 'msg');
+            redirect('funcao');
+        }
     }
 
     public function excluir($id) {
-        $this->funcao->deletar($id);
-        redirect('funcao');
+        $result = $this->funcao->deletar($id);
+
+        if ($result == true) {
+            $this->session->set_flashdata('excluirS', 'msg');
+            redirect('funcao');
+        } else {
+            $this->session->set_flashdata('excluirF', 'msg');
+            redirect('funcao');
+        }
     }
 
     public function editar($id) {
-    $this->load->view('template/header');
-    $data['acronico'] = "MPF";    
-    $data['completo'] = "Meu Projeto Frame";    
-    $data['funcaoEditar'] = $this->funcao->editar($id);
-    $this->load->view('funcaoEditar', $data);   
-    $this->load->view('template/footer');
+        $this->load->view('template/header');
+        $data['acronico'] = "MPF";
+        $data['completo'] = "Meu Projeto Frame";
+        $data['funcaoEditar'] = $this->funcao->editar($id);
+        $this->load->view('funcaoEditar', $data);
+        $this->load->view('template/footer');
     }
 
     public function atualizar() {
         $data['idfuncao'] = $this->input->post('idfuncao');
         $data['nomefuncao'] = $this->input->post('nomefuncao');
 //        $data['email'] = $this->input->post('email');
-        $this->funcao->atualizar($data);
-        redirect('funcao');
+        $result = $this->funcao->atualizar($data);
+
+        if ($result == true) {
+            $this->session->set_flashdata('sucessoA', 'msg');
+            redirect('funcao');
+        } else {
+            $this->session->set_flashdata('falhaA', 'msg');
+            redirect('funcao');
+        }
     }
+
 }
 
 /* 

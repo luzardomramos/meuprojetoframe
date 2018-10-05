@@ -7,62 +7,63 @@
         <div class="col-xs-1 col-sm-1 col-lg-3"></div>                                                                              
         <div class="col-xs-10 col-sm-10 col-lg-6">
 
-            <h5 style="background-color: #bd2130">CONTATO</h5>
-
-            <?php echo form_open('contato/inserir'); ?>
+           <h5 style="background-color: #bd2130">USUÁRIO</h5>
+           
+            <?php echo form_open('usuario/inserir'); ?>
             <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input class="form-control" id="nome" name="nome" type="text" required/>
+                <label for="nomeUsuario">Nome Usuário:</label>
+                <input class="form-control" id="nomeUsuario" name="nomeUsuario" type="text" required/>
             </div>
             <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input class="form-control " id="email" name="email" type="email" required/>
+                <label for="user">Usuário:</label>
+                <input class="form-control" id="nomeUsuario" name="user" type="text" required/>
             </div>
-
             <div class="form-group">
-                <label for="idfuncao">Função:</label>
-                <select class="form-control" required="required" id="idfuncao" name="idfuncao"  >
-                    <option>Selecionar Função... </option>
-                    <?php foreach ($funcao as $funcao): ?>
-                        <option value="<?php echo $funcao->idfuncao; ?>"><?php echo $funcao->nomefuncao; ?></option>
-                    <?php endforeach; ?>        
+                <label for="senha">Senha:</label>
+                <input class="form-control" id="senha" name="senha" type="password" required/>
+            </div>
+            <div class="form-group">
+                <label for="perfilAcesso">Perfil:</label>
+                <select class="form-control" required="required" id="perfilAcesso" name="perfilAcesso" >
+                    <option>Selecionar Perfil... </option>
+                    <option value="ADM">Administrador</option>
+                    <option value="USER">Usuário</option>
                 </select>
             </div>
-
             <input class="btn btn-success" type="submit" value="Salvar"/>
             <input class="btn btn-primary" type="reset" value="Limpar"/>
-            <a class="btn btn-primary" id="btn-lista" href="#">Listar Contatos</a>
+            <a class="btn btn-primary" id="btn-lista" href="#">Listar Usuário</a>
             <?php form_close(); ?>
             <p></p>
             <div id="div-lista" class="hide">
                 <table id="lista" class="table table-striped table-bordered" style="width:100%">
-<!--                    <caption>Contatos</caption>-->
+
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Funções</th>
-                            <th>Função</th>
+                            <th>Usuário</th>
+                            <th>User</th>
+                            <th>Perfil</th>
+                            <th>Funçoes</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($contatos == false): ?>
+                        <?php if ($usuario == false): ?>
                             <tr><td>Nenhum Adicionado</td></tr>
                         <?php else: ?>
-                            <?php foreach ($contatos as $row): ?>
+                            <?php foreach ($usuario as $row): ?>
                                 <tr>
-                                    <td><?php echo $row->nome; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->nomefuncao; ?></td>
+                                    <td><?php echo $row->nomeUsuario; ?></td>
+                                    <td><?php echo $row->user; ?></td>
+                                    <td><?php echo $row->perfilAcesso; ?></td>
                                     <td>
                                         <a href="<?php
                                         echo base_url() .
-                                        'contato/editar/' . $row->id;
+                                        'usuario/editar/' . $row->idusuario;
                                         ?>">Editar</a>
                                         ||
                                         <a href="<?php
                                         echo base_url() .
-                                        'contato/excluir/' . $row->id;
+                                        'usuario/excluir/' . $row->idusuario;
                                         ?>">Excluir</a>
                                     </td>
                                 </tr>                  
